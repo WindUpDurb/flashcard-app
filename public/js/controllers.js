@@ -2,7 +2,7 @@
 
 var app = angular.module("flashcardApp");
 
-app.controller("homeController", function ($scope, FlashcardServices) {
+app.controller("homeController", function () {
    console.log("Home Controller");
 
 });
@@ -24,10 +24,26 @@ app.controller("deckController", function ($scope, FlashcardServices) {
 app.controller("categoryController", function ($scope, FlashcardServices, $stateParams) {
     console.log("Category Controller");
 
+    $scope.flipFlashcard = function () {
+        if ($scope.flashcardFace === $scope.currentFlashcard.question) {
+            $scope.flashcardFace = $scope.currentFlashcard.answer;
+        } else {
+            $scope.flashcardFace = $scope.currentFlashcard.question;
+
+        }
+    };
+
+    $scope.nextFlashcard = function () {
+        console.log("Working")
+        $scope.currentFlashcard = FlashcardServices.pickRandomFlashcard($scope.deckOfFlashcards);
+        $scope.flashcardFace = $scope.currentFlashcard.question;
+    };
+
     FlashcardServices.getCategoryDeck($stateParams.category)
         .then(function (response) {
-            //begin with creating the flashcard game; data is available 
-            console.log("flashcards : ", response.data);
+            $scope.deckOfFlashcards = response.data;
+            $scope.currentFlashcard = FlashcardServices.pickRandomFlashcard($scope.deckOfFlashcards);
+            $scope.flashcardFace = $scope.currentFlashcard.question;
         })
         .catch(function (error) {
             console.log("Error: ", error);

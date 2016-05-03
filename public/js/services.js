@@ -22,4 +22,8 @@ app.service("FlashcardServices", function ($http) {
         return $http.get(`/api/flashcards/${category}`)
     };
 
+    this.pickRandomFlashcard = function (flashcardDeck) {
+        return flashcardDeck[Math.floor(Math.random() * flashcardDeck.length)]
+    };
+
 });
