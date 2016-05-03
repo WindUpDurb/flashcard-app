@@ -26,4 +26,12 @@ app.service("FlashcardServices", function ($http) {
         return flashcardDeck[Math.floor(Math.random() * flashcardDeck.length)]
     };
 
+    this.addNewFlashcard = function (newFlashcardData) {
+      return $http({
+          method: "POST",
+          url : "/api/flashcards/",
+          data : newFlashcardData
+      })
+    };
+
 });

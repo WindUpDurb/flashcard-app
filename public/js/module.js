@@ -20,6 +20,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl : "/html/flashcardCategory.html",
             controller : "categoryController"
         })
+        .state("addTo", {
+            url : "/addTo",
+            templateUrl : "/html/addTo.html",
+            controller : "addToController"
+        })
 
     $urlRouterProvider.otherwise("/");
 });

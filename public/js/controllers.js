@@ -21,6 +21,29 @@ app.controller("deckController", function ($scope, FlashcardServices) {
         });
 });
 
+app.controller("addToController", function ($scope, FlashcardServices) {
+    console.log("Add To Controller");
+
+
+    $scope.addNewFlashcard = function (data) {
+        var configuredData = data;
+        configuredData.subcategories = data.subcategories.split(",");
+        console.log(configuredData)
+        FlashcardServices.addNewFlashcard(data)
+            .then(function (response) {
+                $scope.newFlashcardData = null;
+                alert("Flashcard has been added");
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    };
+    
+
+});
+
+
+
 app.controller("categoryController", function ($scope, FlashcardServices, $stateParams) {
     console.log("Category Controller");
 
