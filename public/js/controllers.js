@@ -38,7 +38,6 @@ app.controller("addToController", function ($scope, FlashcardServices) {
                 console.log("Error: ", error);
             })
     };
-    
 
 });
 
@@ -72,4 +71,46 @@ app.controller("categoryController", function ($scope, FlashcardServices, $state
             console.log("Error: ", error);
         });
 
+});
+
+app.controller("manageFlashcardsController", function ($scope, $state, FlashcardServices) {
+    console.log("Manage Flashcards Controller");
+
+    $scope.toEdit = function (flashcardToEdit) {
+        $state.go("editFlashcard", {flashcard : flashcardToEdit._id})
+    };
+
+    $scope.deleteFlashcard = function (flashcardData) {
+        
+        FlashcardServices.serverDeleteFlashcard(flashcardData)
+            .then(function (response) {
+                alert("Flashcard has been deleted.")
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    };
+    
+    FlashcardServices.getTotalFlashcards()
+        .then(function (response) {
+            $scope.totalFlashcards = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+    
+});
+
+app.controller("toEditController", function ($scope, $state, $stateParams, FlashcardServices) {
+    console.log("To Edit Controller");
+
+    FlashcardServices.getSingleFlashToEdit($stateParams.flashcard)
+        .then(function (response) {
+            console.log(response.data);
+            $scope.flashcardToEdit = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        })
+    
 });

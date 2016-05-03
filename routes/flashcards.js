@@ -26,7 +26,8 @@ router.route("/")
                response.send(savedFlashcard);
            }
        });
-    });
+    })
+
 
 router.route("/:category")
     .get(function (request, response) {
@@ -37,6 +38,27 @@ router.route("/:category")
             response.send(flashcards);
         })
     })
+    .delete(function (request, response) {
+        console.log("params: ", request.params.category);
 
+        Flashcard.findByIdAndRemove(request.params.category, function (error) {
+         if (error) {
+         response.status(400).send(error);
+         }
+         response.send("Flashcard has been deleted");
+         })
+
+    })
+
+router.get("/toEdit/:flashcard", function (request, response) {
+    console.log(request.params);
+        Flashcard.findById(request.params.flashcard, function (error, flashcard) {
+            if (error) {
+                response.status(400).send(error);
+            } else {
+                response.send(flashcard);
+            }
+        });
+});
 
 module.exports = router;

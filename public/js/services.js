@@ -34,4 +34,17 @@ app.service("FlashcardServices", function ($http) {
       })
     };
 
+    this.serverDeleteFlashcard = function (flashcardToDelete) {
+        console.log(flashcardToDelete)
+        return $http({
+            method : "DELETE",
+            url : `/api/flashcards/${flashcardToDelete._id}`,
+        })
+    };
+    
+    this.getSingleFlashToEdit = function (flashcardToEdit) {
+        return $http.get(`/api/flashcards/toEdit/${flashcardToEdit}`)
+    }
+
+
 });

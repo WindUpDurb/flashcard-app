@@ -25,6 +25,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl : "/html/addTo.html",
             controller : "addToController"
         })
+        .state("manageFlashcards", {
+            url : "/manageFlashcards",
+            templateUrl : "html/manageFlashcards.html",
+            controller : "manageFlashcardsController"
+        })
+        .state("editFlashcard", {
+            url : "/manageFlashcards/:flashcard",
+            templateUrl : "html/toEdit.html",
+            controller : "toEditController"
+        });
 
     $urlRouterProvider.otherwise("/");
 });

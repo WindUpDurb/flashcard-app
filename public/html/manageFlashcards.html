@@ -1,0 +1,33 @@
+
+<div class="jumbotron">
+
+    <div class="well">
+        <h1>All Flashcards:</h1>
+
+        <div class="list-group">
+
+            <div class="list-group-item" ng-repeat="flashcard in totalFlashcards">
+                <div class="row-content">
+                    <label for="list-group-item-heading">Question:</label>
+                    <h4 class="list-group-item-heading">{{flashcard.question}}</h4>
+                    <label for="list-group-item-text">Answer:</label>
+                    <p class="list-group-item-text">{{flashcard.answer}}</p>
+                </div>
+                <button class="btn btn-sm btn-raised btn-danger" ng-click="deleteFlashcard(flashcard)" >Delete Flashcard</button>
+                <button class="btn btn-sm btn-raised btn-info" ng-click="toEdit(flashcard)">Edit Flashcard</button>
+
+                <br>
+                <div class="list-group-separator"></div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
