@@ -1,0 +1,27 @@
+
+<div class="jumbotron">
+    <h1>Flashcard Decks</h1>
+
+    <p>Choose from the selection of created decks:</p>
+
+    <div class="list-group">
+
+        <div class="list-group-item" ng-repeat="deck in availableFlashcardDecks">
+            <a ng-href="/#/flashcardDecks/{{deck}}">
+            <div class="row-action-primary">
+                <i class="material-icons">folder</i>
+            </div>
+            <div class="row-content">
+                <div class="least-content">Total Cards in Deck</div>
+                <h4 class="list-group-item-heading">{{deck}}</h4>
+
+                <p class="list-group-item-text">Short Description Here</p>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        </a>
+
+    </div>
+
+
+</div>
